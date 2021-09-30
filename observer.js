@@ -3,7 +3,7 @@ const highlightColor = 'rgba(255, 255, 0, 1)';
 
 const targets = document.querySelectorAll('section');
 
-let observerOptions = {
+const observerOptions = {
     root: null,
     rootMargin: '-120px 0px 0px 0px',
     threshold: 0.1
@@ -21,7 +21,7 @@ window.onscroll = function () {
                   };                 
         });    
     };
-    
+        
     targets.forEach(element => {           
         observer.observe(element);   
     });

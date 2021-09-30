@@ -21,7 +21,7 @@ window.onscroll = function () {
                   };                 
         });    
     };
-
+    
     document.querySelectorAll(targets).forEach(element => {    
         observer.observe(element);   
     });

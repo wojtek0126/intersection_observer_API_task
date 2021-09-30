@@ -12,21 +12,20 @@ let observerOptions = {
 window.onscroll = function () { 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     function observerCallback(entries) {
-        entries.forEach((entry) => {
-           
-                if(entry.isIntersecting) {
-            
+        entries.forEach((entry) => {           
+                if(entry.isIntersecting) {            
                     entry.target.style.backgroundColor = highlightColor;
                   }
                   else{
                       entry.target.style.backgroundColor = initialColor; 
-                  }                 
+                  };                 
         });    
     };
+
     document.querySelectorAll(targets).forEach(element => {    
         observer.observe(element);   
-});
-}   
+    });
+};   
 
 
 

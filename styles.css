@@ -1,0 +1,11 @@
+body section {
+ background-color: rgba(255, 255, 0, 0);
+ transition: 4s;
+ -webkit-transition: 4s;
+ -moz-transition: 4s;
+ -ms-transition: 4s;
+ -o-transition: 4s;
+ font-family: sans-serif;
+ max-width: 800px;
+ margin: 0 auto;
+};  

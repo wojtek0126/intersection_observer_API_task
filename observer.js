@@ -2,7 +2,6 @@ const initialColor = 'rgba(255, 255, 0, 0)';
 const highlightColor = 'rgba(255, 255, 0, 1)'; 
 
 const targets = document.querySelectorAll('section');
-console.log(targets) 
 
 let observerOptions = {
     root: null,

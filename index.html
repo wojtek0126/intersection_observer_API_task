@@ -3,7 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <title>Speed of light</title>
-    <link rel="stylesheet" href="styles.css" />
+   <style>
+    :root {
+    --sectionBackgroundColor: rgba(255, 255, 0, 0);
+    --sectionTransition: 4s;
+    };
+
+    body {
+      background-color: transparent;
+    };
+
+    section {  
+        font-family: sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: var(--sectionBackgroundColor);
+        transition: var(--sectionTransition);
+    };
+
+    #first-section {
+      background-color: var(--sectionBackgroundColor);
+      transition: var(--sectionTransition);
+    };
+
+    #pixel-to-watch {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        top: 1px;
+        left: 0;
+    };
+   </style>
   </head>
   <body>    
   
@@ -17,8 +47,7 @@
           <a href="/wiki/Physical_constant" title="Physical constant">physical constant</a> important in many areas of <a href="/wiki/Physics" title="Physics">physics</a>. Its exact value is defined as
           299792458 metres per second (approximately 300000 km/s, or 186000 mi/s).<a href="#cite_note-imperial-4">[Note 3]</a> It is exact because, by international agreement, a
           <a href="/wiki/Metre#Speed_of_light_definition" title="Metre">metre</a> is defined as the length of the path travelled by <a href="/wiki/Light" title="Light">light</a> in vacuum during a time
-          interval of .mw-parser-output .frac{white-space:nowrap}.mw-parser-output .frac .num,.mw-parser-output .frac .den{font-size:80%;line-height:0;vertical-align:super}.mw-parser-output .frac
-          .den{vertical-align:sub}.mw-parser-output .sr-only{border:0;clip:rect(0,0,0,0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}1⁄299792458
+          
           <a href="/wiki/Second" title="Second">second</a>.<a href="#cite_note-6">[Note 4]</a><a href="#cite_note-penrose-7">[3]</a> According to
           <a href="/wiki/Special_relativity" title="Special relativity">special relativity</a>, c is the upper limit for the speed at which conventional <a href="/wiki/Matter" title="Matter">matter</a>,
           energy or any <a href="/wiki/Signal" title="Signal">signal</a> carrying information can travel through <a href="/wiki/Space#Relativity" title="Space">space</a>.
@@ -919,6 +948,51 @@
       </p>
       </section>
     
-    <script src="observer.js"></script>
+    <script>
+      
+        const targetSections = document.querySelectorAll('section');
+        const firstSection = document.getElementById('first-section');
+
+        const initialColor = 'rgba(255, 255, 0, 0)';
+        const highlightColor = 'rgba(255, 255, 0, 1)'; 
+
+        let triggerBool = false;
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '110px',
+            threshold: 0.2
+        };
+
+        // first observer to watch for scroll move and initiate second observer when true
+        const scrollMoveObserver = new IntersectionObserver(entries => {
+            console.log(entries);
+            if (entries[0].boundingClientRect.y < 0) {
+            triggerBool = true;
+            firstSection.style.backgroundColor = highlightColor;
+                }
+            });
+
+        scrollMoveObserver.observe(document.querySelector("#pixel-to-watch"));
+
+        // second ovserver to initiate background color change on scroll in and out of  into intersection
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        function observerCallback(entries) {
+                entries.forEach((entry) => {     
+                    if(entry.isIntersecting && triggerBool === true) {            
+                        entry.target.style.backgroundColor = highlightColor;
+                      }
+                    else{
+                        entry.target.style.backgroundColor = initialColor; 
+                    };                                       
+            })
+        };  
+
+        targetSections.forEach(element => {           
+            observer.observe(element);   
+        });
+
+    </script>
   </body>
 </html>

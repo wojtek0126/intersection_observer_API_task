@@ -9,6 +9,8 @@ The requirements:
 - As part of your response, describe your solution in written form by email in less than 10 sentences.
 - We will validate the correct usage of a web API (Intersection Observer in this case), the overall code quality and your ability to communicate the solution.
 
+Done and delivered. I am not a fan of fitting styles and scripts internally, but this is how I understand requirements - all in one self-dependent file.
+
 
 
 
